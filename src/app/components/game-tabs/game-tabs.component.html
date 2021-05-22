@@ -1,4 +1,3 @@
-
 <div class="game-tabs">
   <mat-tab-group mat-align-tabs="start" backgroundColor="primary">
     <mat-tab label="About">
@@ -36,13 +35,18 @@
         <img src="{{screenshot?.image}}" alt="screenshot" class="game-screenshot"/>
       </ng-container>
     </mat-tab>
+
+
     <mat-tab label="Trailers" *ngIf="game?.trailers?.length">
       <ng-container *ngFor="let trailer of game?.trailers">
         <video class="game-trailer" controls>
           <source src="{{trailer?.data?.max}}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
+
       </ng-container>
+
+
 
     </mat-tab>
   </mat-tab-group>

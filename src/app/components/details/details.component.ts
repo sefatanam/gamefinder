@@ -23,7 +23,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
       console.log(this.game)
     })
 
-
     setTimeout(() => {
       this.gameRatings = this.game.metacritic;
     }, 1000)

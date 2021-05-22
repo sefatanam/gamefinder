@@ -1,4 +1,5 @@
 export interface Game {
+  trailers: Array<Trailer>;
   id: number;
   background_image: string;
   name: string;
@@ -11,8 +12,7 @@ export interface Game {
   parent_platforms: Array<ParentPlatform>;
   publishers: Array<Publisher>;
   rating: Array<Rating>;
-  screenshots: Array<Screenshots>;
-  trailers: Array<Trailer>;
+  screenshots: Array<Screenshot>;
 }
 
 
@@ -26,7 +26,7 @@ interface Genre {
 
 interface ParentPlatform {
   platform: {
-    id:number;
+    id: number;
     name: string;
     slug: string;
   }
@@ -42,13 +42,19 @@ interface Rating {
   title: string;
 }
 
-interface Screenshots {
-
+interface Screenshot {
+  id: number;
   image: string;
+  width: number;
+  height: number;
 }
 
 interface Trailer {
+  id: number;
+  image: string;
+  preview: string;
   data: {
+    min: string;
     max: string;
   }
 }
