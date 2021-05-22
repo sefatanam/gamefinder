@@ -13,11 +13,13 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTabsModule } from "@angular/material/tabs";
 import { GaugeModule } from "angular-gauge";
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
