@@ -33,7 +33,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.gameSubscription = this.httpService.getGameList(sort, search)
       .subscribe((gameList: APIResponse<Game>) => {
         this.games = gameList.results;
-        console.log(this.games);
+        // console.log(this.games[0].short_screenshots[1]);
+        // console.log(gameList);
 
       })
   }
