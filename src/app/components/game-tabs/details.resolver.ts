@@ -4,12 +4,13 @@ import { EMPTY, Observable } from 'rxjs';
 import { HttpService } from "../../services/http.service";
 import { Game } from "../../domains/models";
 import { catchError } from "rxjs/operators";
+import { LoadingService } from "../../services/loading.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DetailsResolver implements Resolve<Game> {
-  constructor(private httpService: HttpService, private router: Router) {
+  constructor(private httpService: HttpService, private router: Router, private loadingService: LoadingService) {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Game> | Promise<Game> | Game {

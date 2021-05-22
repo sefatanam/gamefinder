@@ -19,6 +19,8 @@ import { HttpErrorsInterceptor } from "./interceptors/http-errors.interceptor";
 import { DetailsComponent } from './components/details/details.component';
 import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { LoadingService } from "./services/loading.service";
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     MatSelectModule,
     MatTabsModule,
     MatIconModule,
+    MatProgressBarModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpHeadersInterceptor, multi: true},
