@@ -98,7 +98,10 @@
 
   &-platform{
     width: 20px;
-    filter: invert(1);
+    //filter: invert(1);
+  }
+  &-platform:not(:last-child){
+    margin-right: 10px;
   }
 
 

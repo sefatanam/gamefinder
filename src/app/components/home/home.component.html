@@ -15,19 +15,43 @@
 </div>
 
 <div class="games">
-  <div class="game">
-    <div class="game-thumb-container">
-      <img src="https://news.xbox.com/en-us/wp-content/uploads/sites/2/2019/07/Keyart-Ultimate-940x528_1907-GA-hero.jpg?resize=940%2C528"
-           alt="thumbnail"
-           class="game-thumbnail">
-    </div>
 
-    <div class="game-description">
-      <p class="game-name">Name</p>
-      <div class="game-platforms">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Xbox_Logo.svg"
-             alt="xbox-logo" class="game-platform">
+  <ng-container *ngFor="let game of games">
+    <div class="game">
+      <div class="game-thumb-container">
+        <img *ngIf="game?.background_image"
+             src="{{game?.background_image}}"
+             loading="lazy"
+             alt="thumbnail"
+             style="object-fit: cover;height: 100%;width: 100%"
+             class="game-thumbnail">
+        <p *ngIf="!game?.background_image">No Image Found</p>
+      </div>
+
+      <div class="game-description">
+        <p class="game-name">{{game?.name}}</p>
+        <div class="game-platforms">
+          <img *ngFor="let gamePlatform of game.parent_platforms"
+               loading="lazy"
+               src="assets/platforms/{{gamePlatform.platform.slug}}.svg"
+               alt="{{gamePlatform.platform.slug}}" class="game-platform">
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+  <!--  <div class="game">-->
+  <!--    <div class="game-thumb-container">-->
+  <!--      <img src="https://news.xbox.com/en-us/wp-content/uploads/sites/2/2019/07/Keyart-Ultimate-940x528_1907-GA-hero.jpg?resize=940%2C528"-->
+  <!--           alt="thumbnail"-->
+  <!--           class="game-thumbnail">-->
+  <!--    </div>-->
+
+  <!--    <div class="game-description">-->
+  <!--      <p class="game-name">Name</p>-->
+  <!--      <div class="game-platforms">-->
+  <!--        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Xbox_Logo.svg"-->
+  <!--             alt="xbox-logo" class="game-platform">-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
 </div>
