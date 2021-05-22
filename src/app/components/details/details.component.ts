@@ -1,17 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Game } from "../../domains/models";
+import { Subscription } from "rxjs";
+import { ActivatedRoute, Params } from "@angular/router";
+import { HttpService } from "../../services/http.service";
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, OnDestroy {
   gameRating = 0;
+  gameId = 0;
+  game!: Game;
+  gameSubscription: Subscription = Subscription.EMPTY;
+  routeSubscription: Subscription = Subscription.EMPTY;
 
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute, private httpService: HttpService) {
   }
 
   ngOnInit(): void {
+    this.routeSubscription = this.activatedRoute.params.subscribe((params: Params) => {
+      this.gameId = params['id'];
+      this.getGameDetails(this.gameId);
+    })
   }
 
   getColor(value: number): string {
@@ -25,6 +37,21 @@ export class DetailsComponent implements OnInit {
       return '#ef4655'
     }
   };
+
+  getGameDetails(id: number): void {
+    this.gameSubscription = this.httpService.getGameDetails(id).subscribe((game: Game) => {
+      this.game = game;
+
+      setTimeout(() => {
+        this.gameRating = this.game?.metacritic;
+      }, 1000)
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.routeSubscription ? this.routeSubscription.unsubscribe() : null;
+    this.gameSubscription ? this.gameSubscription.unsubscribe() : null;
+  }
 
 
 }
