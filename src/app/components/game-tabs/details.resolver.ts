@@ -17,6 +17,7 @@ export class DetailsResolver implements Resolve<Game> {
     const {id} = route.params;
     return this.httpService.getGameDetails(id).pipe(
       catchError(() => {
+        this.loadingService.offLoading();
         this.router.navigateByUrl('/not-found').then(r => console.log);
         return EMPTY;
       })

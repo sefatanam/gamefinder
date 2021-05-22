@@ -10,6 +10,7 @@ import { LoadingService } from "./loading.service";
   providedIn: 'root'
 })
 export class HttpService {
+  private RAWVG_URI = `${env.BASE_URL}/games`;
 
   constructor(private http: HttpClient, private loadingService: LoadingService) {
   }
@@ -23,23 +24,21 @@ export class HttpService {
         .set('ordering', ordering).set('search', search)
     }
     this.loadingService.offLoading();
-    const data = this.http.get<APIResponse<Game>>(`${env.BASE_URL}/games`, {
+    return this.http.get<APIResponse<Game>>(`${this.RAWVG_URI}`, {
       params: params
     });
-
-    return data;
   }
 
 
   getGameDetails(id: number): Observable<Game> {
     this.loadingService.setLoading();
-    const gameInfoRequest = this.http.get(`${env.BASE_URL}/games/${id}`);
+    const gameInfoRequest = this.http.get(`${this.RAWVG_URI}/${id}`);
 
-    const gameTrailerRequest = this.http.get(`${env.BASE_URL}/games/${id}/movies`);
+    const gameTrailerRequest = this.http.get(`${this.RAWVG_URI}/${id}/movies`);
 
-    const gameScreenshotsRequest = this.http.get(`${env.BASE_URL}/games/${id}/screenshots`);
+    const gameScreenshotsRequest = this.http.get(`${this.RAWVG_URI}/${id}/screenshots`);
 
-    const data = forkJoin({
+    return forkJoin({
       gameInfoRequest,
       gameTrailerRequest,
       gameScreenshotsRequest
@@ -53,7 +52,6 @@ export class HttpService {
         }
       })
     )
-    return data;
 
   }
 }
