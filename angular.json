@@ -149,5 +149,8 @@
       }
     }
   },
-  "defaultProject": "gamefinder"
+  "defaultProject": "gamefinder",
+  "cli": {
+    "analytics": false
+  }
 }
