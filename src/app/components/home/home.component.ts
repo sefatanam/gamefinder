@@ -34,4 +34,7 @@ export class HomeComponent implements OnInit {
       })
   }
 
+  openGameDetails(id: number) {
+    
+  }
 }
