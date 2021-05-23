@@ -5,9 +5,6 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class HttpHeadersInterceptor implements HttpInterceptor {
 
-  constructor() {
-  }
-
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     request = request.clone({
       setHeaders: {
